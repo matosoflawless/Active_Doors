@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const colors = ["blue", "green", "orange"];
+  const [activeDoor, setActiveDoor] = useState(null);
+
+  const handleDoorActivation = (door) => {
+    setActiveDoor(door);
+  };
+
+  const resetActiveDoor = () => {
+    setActiveDoor(null);
+  };
+
+  const getActiveDoorText = () => {
+    if (activeDoor) {
+      return `Active door: ${activeDoor}`;
+    }
+    return "Active door: none";
+  };
+
+  const getLiStyle = (door) => {
+    if (activeDoor === door) {
+      return { backgroundColor: door };
+    }
+    return {};
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className="main">
+      <h1>Active Doors</h1>
+      <h2>Click on a door to activate it!</h2>
+      <h3>{getActiveDoorText()}</h3>
+      <ul className="doors">
+        {colors.map((color) => (
+          <li key={color} style={getLiStyle(color)}>
+            <img src={`/images/${color}-door.jpg`} alt={`${color} door`} />
+            <button onClick={() => handleDoorActivation(color)}>
+              Activate {color} door
+            </button>
+          </li>
+        ))}
+      </ul>
+      <br />
+      <button className="resetButton" onClick={resetActiveDoor}>
+        Reset
+      </button>
+    </main>
+  );
 }
 
-export default App
+export default App;

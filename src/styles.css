@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.main {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.doors {
+  margin: 0;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 15px;
+  list-style-type: none;
+}
+
+.doors > li > img {
+  padding: 15px;
+}
+
+.doors > li > img {
+  margin: 0 auto;
+}
+
+.doors > li > button {
+  display: block;
+  width: 100%;
+}
+
+.resetButton {
+  display: block;
+  margin: 0 auto;
+}
